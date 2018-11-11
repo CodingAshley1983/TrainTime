@@ -1,0 +1,40 @@
+.jumbotron {
+    background-color: green;
+    text-align: center;
+    color:  white;
+    font-size: 50px;
+    height: 80px;
+    width: 60%;
+    margin: 0 auto;
+}
+
+#schedule-title  {
+    width: 60%;
+    margin: 0 auto;
+    
+    background-color: rgb(66, 177, 66);
+
+}
+.table {
+    width: 60%;
+    margin: 0 auto;
+    border-color: rgb(66, 177, 66);
+    border: solid;
+}
+
+.form-group{
+    width: 60%;
+    margin: 0 auto;
+    
+}
+
+form{
+    border: solid;
+    border-color: black;
+    width: 60%;
+    margin: 0 auto;
+}
+
+button {
+    justify-content: center;
+}
