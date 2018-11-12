@@ -35,6 +35,7 @@ form{
     margin: 0 auto;
 }
 
-button {
-    justify-content: center;
+
+#btn-clear {
+    background-color: purple;
 }

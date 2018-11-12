@@ -60,12 +60,23 @@
                 $("<td>").text(frequency),
                 $("<td>").text(firstTrain),
                 $("<td>").text(""),
-                $("<td>").append("<button>", rowButton, "</button"),
+                $("<td>").append( $('<button/>', {
+                        text: 'delete',
+        
+                        id: 'btn_clear',
+                        ServerValue: "data-location",
+                        // click: clearButton
+                }
                 
-            )
+            ))
 
-        );
+        ));
 
-
+            //    function clearButton(){
+            //      $("<tr>").hide();
+            //    }
+            //    $("#btn_clear").on("click", clearButton){
+            //    console.log("button worked")
+            //    }
     })
   
