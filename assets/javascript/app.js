@@ -53,63 +53,35 @@
         var destination = childSnapshot.val().destination; 
         var frequency= childSnapshot.val().frequency; 
         var firstTrain= childSnapshot.val().time;
+// Convert First Time to Past Date
+var firstTrainConverted = moment(firstTrain, "HH:mm").subtract(1, "years");
+
+// Calculate Difference Between Current Time and First Train Converted
+var diffTime = moment().diff(moment(firstTrainConverted), "minutes");
+
+// Time Remaining
+var timeRemaining = diffTime % frequency;
+
+// Minutes Until Next Train
+var minutesAway = frequency - timeRemaining;
+
+// Time of Next Arrival
+var nextArrival = moment().add(minutesAway, "minutes");
+
+// Create the new row
+var newRow = $("<tr>").append(
+    $("<td>").text(trainName),
+    $("<td>").text(destination),
+    $("<td>").text(frequency),
+    $("<td>").text(moment(nextArrival).format("hh:mm A")),
+    $("<td>").text(minutesAway),
+);
+
+// Append the new row to the table
+$(".table > tbody").append(newRow);
 
        
 
-        $(".tbody").append(
-            $("<tr>").append(
-                $("<td>").text(trainName), 
-                $("<td>").text(destination),
-                $("<td>").text(frequency),
-                $("<td>").text(firstTrain),
-                $("<td>").text("")
-               
-                
-            ))
-
-         });
-
-    
-
-            //Want to display current time and have it auto-refresh every minute
-var datetime = null,
-date = null;
-
-var update = function () {
-date = moment(new Date())
-datetime.html(date.format('dddd, MMMM Do YYYY, h:mm:ss a'));
-};
-function calculate(sv) {
-
-    var firstTime= sv.startTime
-    var tFrequency = sv.frequency;
-    
-    // First Time (pushed back 1 year to make sure it comes before current time)
-    var firstTimeConverted = moment(firstTime, "HH:mm").subtract(1, "years");
-    
-    // Current Time
-    var currentTime = moment();
-    console.log("CURRENT TIME: " + moment(currentTime).format("hh:mm"));
-    
-    // Difference between the times
-    var diffTime = moment().diff(moment(firstTimeConverted), "minutes");
-    
-    // Time apart (remainder)
-    var tRemainder = diffTime % tFrequency;
-    
-    // Minute Until Train
-    var tMinAway = tFrequency - tRemainder;
-    
-    // Next Train
-    var nxtTrain = moment().add(tMinAway, "minutes");
-    console.log("Minutes away:", nxtTrain);
-    
-    };
-
-$(document).ready(function(){
-datetime = $('#current-time')
-update();
-setInterval(update, 1000);
 });
 
 
